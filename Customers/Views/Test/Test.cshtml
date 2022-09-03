@@ -1,0 +1,70 @@
+﻿@model List<Customers.Models.UserModel>     
+          @* not one user  *@
+
+@{
+    ViewBag.Title = "Ozcan Guler's Amazing App";
+    Layout = "~/Views/Shared/_MyDefaultLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test</title>
+   
+</head>
+<body>
+    <div>
+        <h1>Amazing news story!!!</h1>
+        <p>You won't belive your eyes. This site will become the most viewed page on the internet if everything goes well.</p>
+        @*  @Html.Label("Welcome to Razor",new {style="font-size:24px;color:red;" }) inherit css    label is relaeted a text field *@
+        @Html.Label("Welcome to Razor", new { @class = "label1" })
+        @Html.Label("These are my customers", new { @class = "label1", @id = "label2" })
+
+
+
+        <div class="flex-container">
+
+
+            @foreach (var item in Model)
+            {
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.ImgAddress)" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.BioShort)</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">@Html.DisplayFor(modelItem => item.EmailAdress)</li>
+                        <li class="list-group-item">@Html.DisplayFor(modelItem => item.PhoneNumber)</li>                      
+                    </ul>
+                    <div class="card-body">
+                        <a href=@Html.DisplayFor(modelItem => item.BioAdress) class="card-link">See Full Biography</a>
+                    </div>
+                </div>
+
+            }
+        </div>
+
+        <table id="customers">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.EmailAdress)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                </tr>
+            }
+        </table>
+
+        @Html.ActionLink("Refresh this page", "../test")
+        
+    </div>
+</body>
+</html>
